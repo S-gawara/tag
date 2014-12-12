@@ -4,9 +4,10 @@ class agent_a extends TAG {
     void setup() {
         server("localhost:8080")
     }
+
     void loop(Map msg) {
         println msg
-        if (msg._p == 'request-appointment') {
+        if (msg._p == 'do-appointment') {
             if (msg.with == 'agent_c') {  // 自分宛だったら
                 // schedule.add([hour:msg.hour, item:msg.item, with:msg.with]) // schedulemに追加
 		// appointmentを送信
@@ -18,8 +19,8 @@ class agent_a extends TAG {
 	    // 自分宛だったら
 	    if (msg.with == 'agent_a'){
 //	        schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
-		send('agent_c', [_p:'accept'])
-		send('user', [_p:'inform', hour:schedule.hour, item:scledule.item, with:schedule.with]) 
+		send('agent_b', [_p:'accept'])
+		send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg.with]) 
 	    }
             return
         }

@@ -8,11 +8,12 @@ class agent_c extends TAG {
     void loop(Map msg) {
         println msg
 	// ACLからcからaに送信命令を受信
-        if (msg._p=='request-appointment') {
+        if (msg._p=='do-appointment') {
 	    // aにappointを送信
 	    // Map m = send('agent_a', [_p:'inform', hour:schedule.hour, item:scledule.item, with:schedule.with])
             if (msg.with == 'agent_a') {
                 send('agent_a', [_p:'appointment', hour:msg.hour, item:msg.item, with:msg.with])
+
                 // schedule.add([hour:msg.hour, item:msg.item, with:msg.with]) // schedulemに追加
 
                 // reply(msg, [_p:'accept', hour:schedule.hour, item:scledule.item, with:schedule.with]) // acceptを送信

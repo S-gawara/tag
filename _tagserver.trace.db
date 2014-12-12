@@ -1,4 +1,59 @@
-12-12 15:00:29 jdbc[3]: exception
+12-12 15:20:13 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: テーブル "MESSAGES" が見つかりません
 Table "MESSAGES" not found; SQL statement:
 select * from MESSAGES [42102-174]
+12-12 15:20:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "msg" が見つかりません
+Column "msg" not found [42122-174]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at org.h2.message.DbException.get(DbException.java:172)
+	at org.h2.message.DbException.get(DbException.java:149)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3072)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3133)
+	at org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:296)
+	at jp.cit.hara.tag.MessageServer$MyServlet.setAttributes(MessageServer.java:222)
+	at jp.cit.hara.tag.MessageServer$MyServlet.doGet(MessageServer.java:198)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:696)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:526)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:568)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1110)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:453)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:183)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1044)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:97)
+	at org.eclipse.jetty.server.Server.handle(Server.java:459)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:280)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:229)
+	at org.eclipse.jetty.io.AbstractConnection$1.run(AbstractConnection.java:505)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:607)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:536)
+	at java.lang.Thread.run(Thread.java:745)
+12-12 15:21:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "MSG VARCHAR(300)" の値が長過ぎます: "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"
+Value too long for column "MSG VARCHAR(300)": "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"; SQL statement:
+insert into MESSAGES(time,uuid,replyto,sender,receiver,msg) values ('2014-12-12 15:21:44.425','04ec834e-c0e4-4c20-91a4-4f928fe2dbf1','ad9b2639-c25b-40ca-a233-122151208559','agent_c','agent_a','[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''accept'', _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c'']') [22001-174]
+12-12 15:22:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "MSG VARCHAR(300)" の値が長過ぎます: "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"
+Value too long for column "MSG VARCHAR(300)": "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"; SQL statement:
+insert into MESSAGES(time,uuid,replyto,sender,receiver,msg) values ('2014-12-12 15:22:41.67','8b7e5e83-896c-4bef-aced-9ce202d15390','72ac7e60-1116-4f3a-be0c-935057e7a9a8','agent_c','agent_a','[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''accept'', _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c'']') [22001-174]
+12-12 15:29:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "MSG VARCHAR(300)" の値が長過ぎます: "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"
+Value too long for column "MSG VARCHAR(300)": "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"; SQL statement:
+insert into MESSAGES(time,uuid,replyto,sender,receiver,msg) values ('2014-12-12 15:29:22.278','3fff0f49-d1d4-47cc-af23-7506bd63e3e1','678c5a62-c9ac-4d33-8653-e3ea9bb506a9','agent_c','agent_a','[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''accept'', _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c'']') [22001-174]
+12-12 15:29:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "MSG VARCHAR(300)" の値が長過ぎます: "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"
+Value too long for column "MSG VARCHAR(300)": "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"; SQL statement:
+insert into MESSAGES(time,uuid,replyto,sender,receiver,msg) values ('2014-12-12 15:29:48.22','3f1ab1fe-5f82-451a-bad4-d833a2343caa','fd0e34e5-f64b-4db5-9541-034dadd9f81d','agent_c','agent_a','[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''accept'', _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c''], _f:''agent_a''], _f:''agent_c'']') [22001-174]
+12-12 15:38:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "MSG VARCHAR(300)" の値が長過ぎます: "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"
+Value too long for column "MSG VARCHAR(300)": "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (315)"; SQL statement:
+insert into MESSAGES(time,uuid,replyto,sender,receiver,msg) values ('2014-12-12 15:38:50.088','4d68e5e3-9af0-4b47-8677-a2aead85295d','48101709-06ba-465d-a126-3cdc1ceaba36','agent_b','agent_a','[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''accept'', _f:''agent_a''], _f:''agent_b''], _f:''agent_a''], _f:''agent_b''], _f:''agent_a''], _f:''agent_b''], _f:''agent_a''], _f:''agent_b''], _f:''agent_a''], _f:''agent_b'']') [22001-174]
+12-12 16:02:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: 列 "MSG VARCHAR(300)" の値が長過ぎます: "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (319)"
+Value too long for column "MSG VARCHAR(300)": "'[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry''... (319)"; SQL statement:
+insert into MESSAGES(time,uuid,replyto,sender,receiver,msg) values ('2014-12-12 16:02:24.101','32614bd0-c174-438f-945f-941e1066f515','cad8908a-81a8-453e-b62f-d28c700fbde3','test','test2','[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''sorry'', msg:[_p:''accept'', _f:''test''], _f:''test2''], _f:''test''], _f:''test2''], _f:''test''], _f:''test2''], _f:''test''], _f:''test2''], _f:''test''], _f:''test2''], _f:''test'']') [22001-174]
