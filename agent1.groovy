@@ -15,43 +15,42 @@ class agent1 extends TAG {
 	    send(msg.with, [_p:'appointment', hour:msg.hour, item:msg.item, with:msg.with])
 	// 他のagentからappointmentを受信
         } else if (msg._p == 'appointment' && msg.with == 'agent1') {
-		// scheduleが空かどうかを調べる
-		if(schedule == null) {
-                    // scheduleに追加
-                    schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
-		} else {
-		    // hourが重複しているかどうか調べる
-		    def time = schedule.find{it.hour == msg.hour}
-              	    if (time != null) {
-                        // 優先度の比較
-		        println "先客は" + time.with
-//			def visitor = time.with
-			println "agent3の値は" + human.get(time.with)
+	    // scheduleが空かどうかを調べる
+	    if(schedule == null) {
+                // scheduleに追加
+                schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
+	        // acceptを送信
+	 	send(msg._f, [_p:'accept'])
+		// ACLにinformを送信
+                send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])	
+	    } else {
+	        // hourが重複しているかどうか調べる
+		def time = schedule.find{it.hour == msg.hour}
+              	if (time != null) {
+                    // 優先度の比較
+		    println "agent3の値は" + human.get(time.with)
+	            // 先客
+	            def visitor1 = human.get(time.with)
+		    println "visitor1の値" + visitor1
+		    // 後客
+		    def visitor2 = human.get(msg._f)
+		    println "visitor2の値" + visitor2
 
-
-//			def visitor1 = human.find{ it.find == visitor }
-			
-
-//			def visitor = schedule.with
-//			println "visitor" + visitor
-
-			// cancelを送信
-//		　　　　send(msg._f, [_p:'cancel'])
-			// ACLに新しい情報を送信
-//		　　　　send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
-		    }
-		    // 重複していなければ実行
-		    else {
+		    if (visitor1 < visitor2) {
 		        // scheduleに追加
-		        schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
-
-	    	        // acceptを送信
-                        send(msg._f, [_p:'accept'])
-
-	                // ACLにinformを送信
+			schedule.add([hour:msg.hour, item:msg.item, with:msg._f])                        
+                        // acceptを送信
+                        send(msg._f, [_p:'accept'])    
+                        // ACLにinformを送信
                         send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
+		    } else {
+		        // cancelを送信
+		        send(msg._f, [_p:'cancel'])
+		        // ACLに新しい情報を送信
+	                send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 		    }
 		}
+	    }
         } else if (msg._p == 'cancel' && msg.with == 'agent1') { //msg.withでいい？
             // acceptを送信
             send(msg._f, [_p:'accept'])
