@@ -26,9 +26,9 @@ class agent1 extends TAG {
 	    } else {
 	        // hourが重複しているかどうか調べる
 		def time = schedule.find{it.hour == msg.hour}
+		println "time = " + time
               	if (time != null) {
                     // 優先度の比較
-		    println "agent3の値は" + human.get(time.with)
 	            // 先客
 	            def visitor1 = human.get(time.with)
 		    println "visitor1の値" + visitor1
@@ -37,6 +37,10 @@ class agent1 extends TAG {
 		    println "visitor2の値" + visitor2
 
 		    if (visitor1 < visitor2) {
+			// 元から登録されているデータを削除
+			schedule = schedule.minus time
+			// cancelを送信
+			send(time._f, [_p:'cancel'])
 		        // scheduleに追加
 			schedule.add([hour:msg.hour, item:msg.item, with:msg._f])                        
                         // acceptを送信
@@ -44,16 +48,24 @@ class agent1 extends TAG {
                         // ACLにinformを送信
                         send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 		    } else {
-		        // cancelを送信
-		        send(msg._f, [_p:'cancel'])
+		        // refusalを送信
+		        send(msg._f, [_p:'refusal'])
 		        // ACLに新しい情報を送信
 	                send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 		    }
+		} else {
+                	// scheduleに追加
+                	schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
+	        	// acceptを送信
+	 		send(msg._f, [_p:'accept'])
+			// ACLにinformを送信
+                	send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])	
 		}
 	    }
         } else if (msg._p == 'cancel' && msg.with == 'agent1') { //msg.withでいい？
             // acceptを送信
             send(msg._f, [_p:'accept'])
 	}
+	// println "[schedule]:" + schedule
     }
 }
