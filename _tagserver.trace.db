@@ -1,4 +1,0 @@
-12-13 17:15:03 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: テーブル "MESSAGES" が見つかりません
-Table "MESSAGES" not found; SQL statement:
-select * from MESSAGES [42102-174]
