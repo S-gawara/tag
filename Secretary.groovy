@@ -35,8 +35,10 @@ public class Secretary_A extends TAG {
               	if (time != null) {
 	            // 先客
 	            def visitor1 = human.get(time.with)
+		    println time.with
 		    // 後客
 		    def visitor2 = human.get(msg._f)
+		    println msg._f
 
 		    if (visitor1 < visitor2) {
 			// 登録されているscheduleを削除
