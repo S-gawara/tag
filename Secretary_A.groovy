@@ -1,8 +1,9 @@
-class Secretary_A extends TAG {
+// Class名とスクリプト名を一緒にはできない
+public class Secretary_A extends TAG {
     // def schedule = [_p:要求内容, hour:時間, item:会議, with:agent名, _f:依頼主]
     def schedule = []
-    // Secretary_C < Secretary_B < Secretary_A
-    def human = [ Secretary_C:0, Secretary_B:1, Secretary_A:2 ]
+    // Secretary_C = Secretary_A < Secretary_B
+    def human = [ Secretary_C:0, Secretary_A:0, Secretary_B:1 ]
 
     void setup() {
         server("localhost:8080")
@@ -34,7 +35,7 @@ class Secretary_A extends TAG {
 
 		    if (visitor1 < visitor2) {
 			// 登録されているscheduleを削除
-			schedule = schedule.minus time
+			// schedule = schedule.minus time
 			// cancelを送信
 			send(time.with, [_p:'cancel'])
 		        // scheduleに追加
@@ -63,10 +64,13 @@ class Secretary_A extends TAG {
             // acceptを送信
             send(msg._f, [_p:'accept'])
 	    // 登録されているscheduleを削除
-	    schedule = schedule.minus time
-	} else {
-	    reply(msg, [_p:'sorry', msg:msg])
+	    // schedule = schedule.minus time
 	}
-	println "[schedule]:" + schedule
+	// else {
+	//    reply(msg, [_p:'sorry', msg:msg])
+	//}
+	// println "[schedule]:" + schedule
     }
 }
+
+TAG.start("localhost:8080",Secretary_A,Secretary_B,Secretary_C)
