@@ -13,8 +13,8 @@ public class Secretary_A extends TAG {
         println msg
 	// ACLからdo-appointmentを受信
         if (msg._p == 'do-appointment') {
-	    // send(msg.with, [_p:'appointment', hour:msg.hour, item:msg.item, with:msg.with])
-	    request(msg.with, [_p:'appointment', hour:msg.hour, item:msg.item, with:msg.with])
+	    send(msg.with, [_p:'appointment', hour:msg.hour, item:msg.item, with:msg.with])
+	    // request(msg.with, [_p:'appointment', hour:msg.hour, item:msg.item, with:msg.with])
 
 	// 他のagentからappointmentを受信
         } else if (msg._p == 'appointment' && msg.with == 'Secretary_A') {
@@ -24,8 +24,8 @@ public class Secretary_A extends TAG {
                 schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
 
 	        // acceptを送信
-	 	// send(msg._f, [_p:'accept'])
-		reply(msg, [_p:'accept'])
+	 	send(msg._f, [_p:'accept'])
+		// reply(msg, [_p:'accept'])
 
 		// ACLにinformを送信
                 send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])	
@@ -40,11 +40,11 @@ public class Secretary_A extends TAG {
 
 		    if (visitor1 < visitor2) {
 			// 登録されているscheduleを削除
-			// schedule = schedule.minus time
+			schedule = schedule.minus time
 
-                        // acceptを送信
-                        // send(msg._f, [_p:'accept'])
-			reply(msg, [_p:'accept'])
+	                // acceptを送信
+                        send(msg._f, [_p:'accept'])
+			// reply(msg, [_p:'accept'])
 
 			// cancelを送信
 			send(time.with, [_p:'cancel', hour:time.hour, item:time.item, with:time.with])
@@ -64,8 +64,8 @@ public class Secretary_A extends TAG {
                 	schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
 
 	        	// acceptを送信
-			// send(msg._f, [_p:'accept'])
-			reply(msg, [_p:'accept'])
+			send(msg._f, [_p:'accept'])
+			// reply(msg, [_p:'accept'])
 
 			// ACLにinformを送信
                 	send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])	
@@ -77,16 +77,13 @@ public class Secretary_A extends TAG {
         } else if(msg._p == 'cancel' && msg.with == 'Secretary_A') {
             // acceptを送信
             send(msg._f, [_p:'accept'])
+	    // reply(msg, [_p:'accept'])
 
 	    // 登録されているscheduleを削除
-	    // schedule = schedule.minus time
+	    schedule = schedule.minus time
 	}
-	// else {
-	//    reply(msg, [_p:'sorry', msg:msg])
-	//}
 	// println "[schedule]:" + schedule
     }
 }
 
 TAG.start("localhost:8080",Secretary_A,Secretary_B,Secretary_C)
-
