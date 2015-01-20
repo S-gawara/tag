@@ -20,6 +20,8 @@ class Secretary_B extends TAG {
 	    if(schedule == null) {
 	        // schedule追加
 	        schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
+  	        // ACLにinform送信
+                send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 	    } else {
 		// hourが重複しているかどうか調べる
 		def time = schedule.find{it.hour == msg.hour}
@@ -35,6 +37,8 @@ class Secretary_B extends TAG {
 			send(time.with, [_p:'cancel'])
 			// schedule追加
 			schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
+			// ACLにinform送信
+                        send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 		    } else {
 			// refusal送信
 			send(msg._f, [_p:'refusal'])
@@ -42,6 +46,8 @@ class Secretary_B extends TAG {
 		} else {
 		    // schedule追加
 		    schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
+		    // ACLにinform送信
+                    send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 		}
 	    }
 	    // ACLにinform送信
