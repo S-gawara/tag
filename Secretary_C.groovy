@@ -50,8 +50,6 @@ class Secretary_C extends TAG {
                         send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 		}
 	    }
-	    // ACLにinform送信
-	    send('user', [_p:'inform', hour:msg.hour, item:msg.item, with:msg._f])
 	} else if (msg._p == 'accept' && msg.with == 'Secretary_C') {
 	    // schedule追加
 	    schedule.add([hour:msg.hour, item:msg.item, with:msg._f])
